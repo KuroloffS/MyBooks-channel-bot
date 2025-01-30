@@ -1,0 +1,10 @@
+ID,BookName,Success,Error
+1,Bookworms-Huckleberry-Finn.pdf,Success,NULL
+2,Cambridge-International-AS-and-A-Level-Physics-Coursebook-PDFDrive.com-.pdf,Success,NULL
+3,Devid_Soyer_Makfarland_Novaya_bolshaya_kniga_CSS_proglib.pdf,Success,NULL
+4,Cambridge-International-AS-and-A-Level-Physics-Coursebook-PDFDrive.com-.pdf,Success,NULL
+5,rej_dalio-printcipi_zhizn_i_rabota-5f6048350d7ef (1) (2).pdf,Success,NULL
+6,Yatsenkov_tvoi_pervii_kvadrokopter.pdf,Success,NULL
+7,rej_dalio-printcipi_zhizn_i_rabota-5f6048350d7ef (1) (2).pdf,Success,NULL
+8,Yatsenkov_tvoi_pervii_kvadrokopter.pdf,Success,NULL
+9,Английский для программистов самоучитель .pdf,Not succeeded,"Ошибка обработки PDF: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot7635359017:AAG-1nrU6Ro5_Q88NhsmR3ZVjh1fPxAk6mY/sendDocument (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:2427)')))"

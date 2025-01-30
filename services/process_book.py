@@ -1,6 +1,7 @@
 import os
 from pdf2image import convert_from_path
 from tempfile import TemporaryDirectory
+from logs import logging
 
 
 def process_book(pdf_path: str, dpi: int = 200) -> tuple[bytes, str]:
@@ -15,10 +16,8 @@ def process_book(pdf_path: str, dpi: int = 200) -> tuple[bytes, str]:
     if not os.path.isfile(pdf_path):
         raise ValueError(f"Путь не является файлом: {pdf_path}")
 
-    # Временная директория для сохранения изображений
     with TemporaryDirectory() as temp_dir:
         try:
-            # Конвертируем первую страницу в PNG
             images = convert_from_path(
                 pdf_path=pdf_path,
                 dpi=dpi,
@@ -32,7 +31,12 @@ def process_book(pdf_path: str, dpi: int = 200) -> tuple[bytes, str]:
 
             # Если изображений нет → ошибка
             if not images:
-                raise RuntimeError("Не удалось извлечь страницы PDF")
+                logging.log_to_file(
+                    book_name=os.path.basename(pdf_path),
+                    success="Not succeeded",
+                    error="Не удалось извлечь страницы PDF",
+                )
+                return
 
             # Читаем первое изображение как байты
             with open(images[0], "rb") as f:
@@ -42,6 +46,15 @@ def process_book(pdf_path: str, dpi: int = 200) -> tuple[bytes, str]:
             send_telegram_message = send_reply_channel_message(
                 document_path=pdf_path, reply_to_message_id=message_id
             )
-
+            logging.log_to_file(
+                book_name=os.path.basename(pdf_path),
+                success="Success",
+                error="NULL",
+            )
         except Exception as e:
-            raise RuntimeError(f"Ошибка обработки PDF: {str(e)}")
+            logging.log_to_file(
+                book_name=os.path.basename(pdf_path),
+                success="Not succeeded",
+                error=f"Ошибка обработки PDF: {str(e)}",
+            )
+            return

@@ -3,7 +3,7 @@ import time
 
 from config import BOT_TOKEN, CHANNEL_ID
 from handlers.comands import process_updates
-
+import services.convert
 
 POLL_INTERVAL = 1
 url = f"https://api.telegram.org/bot{BOT_TOKEN}/getMe"
